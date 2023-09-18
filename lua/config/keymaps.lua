@@ -14,48 +14,52 @@ vim.cmd("map <Leader>lF :lua vim.lsp.buf.format({ async = true })<CR>") -- Set h
 vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle)
 
 
-local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(mode, keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
-    vim.keymap.set(keys, func, { buffer = bufnr, desc = desc })
-  end
+vim.keymap.set("n", '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame' })
+vim.keymap.set("n", '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+vim.keymap.set("n", 'gd', vim.lsp.buf.definition, { desc = '[G]oto [D]efinition' })
+vim.keymap.set("n", 'gr', require('telescope.builtin').lsp_references, { desc = '[G]oto [R]eferences' })
+vim.keymap.set("n", 'gI', vim.lsp.buf.implementation, { desc = '[G]oto [I]mplementation' })
+-- vim.keymap.set('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+-- vim.keymap.set('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+-- vim.keymap.set('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+-- See `:help K` for why this keymap
+vim.keymap.set("n", 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
+vim.keymap.set("n", '<C-k>', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
+-- Move Lines
+vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+-- move through buffers with bufferline
 
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>c", "<CMD>bdelete<CR>")
+vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
+vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
 
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
+-- Lesser used LSP functionality
+-- vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, { desc = "n", '[G]oto [D]eclaration' })
+-- vim.keymap.set("n", '<leader>wa', vim.lsp.buf.add_workspace_folder, { desc = '[W]orkspace [A]dd Folder' })
+-- vim.keymap.set("n", '<leader>wr', vim.lsp.buf.remove_workspace_folder, { desc = '[w]orkspace [r]emove folder' })
+-- vim.keymap.set("n", '<leader>wl', function()
+-- print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+-- end, { '[W]orkspace [L]ist Folders' })
+
+-- Create a command `:Format` local to the LSP buffer
+-- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+-- vim.lsp.buf.format()
+-- end, { desc = 'Format current buffer with LSP' })
 
 
 --
@@ -79,40 +83,14 @@ end
 -- map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 --
--- -- Move to window using the <ctrl> hjkl keys
--- map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
--- map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
--- map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
--- map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
---
 -- -- Resize window using <ctrl> arrow keys
 -- map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 -- map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 -- map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 -- map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 --
--- -- Move Lines
--- map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
--- map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
--- map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
--- map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
--- map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
--- map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
---
--- -- buffers
--- if Util.has("bufferline.nvim") then
---   map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
---   map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
---   -- map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
---   -- map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
--- else
---   map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
---   map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
---   -- map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
---   --map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
--- end
+
 -- map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
--- map("n", "<leader>c", "<CMD>bdelete<CR>")
 -- --map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 --
 -- -- Clear search with <esc>

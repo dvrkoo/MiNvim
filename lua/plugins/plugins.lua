@@ -19,6 +19,24 @@ return {
       },
     },
   },
+
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -43,4 +61,36 @@ return {
     end,
   },
 
+  {
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    dependencies = "neovim/nvim-lspconfig",
+  },
+  {
+    "mfussenegger/nvim-dap",
+    -- init = function()
+    -- require("core.utils").load_mappings("dap")
+    -- end
+  },
+  {
+    'saecki/crates.nvim',
+    tag = 'v0.3.0',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('crates').setup()
+    end,
+  }, {
+  "rust-lang/rust.vim",
+  ft = "rust",
+  init = function()
+    vim.g.rustfmt_autosave = 1
+  end
+},
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    lazy = false,
+    config = function(_, opts)
+      require("nvim-dap-virtual-text").setup()
+    end
+  },
 }
