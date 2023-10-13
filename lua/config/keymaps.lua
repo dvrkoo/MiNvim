@@ -1,4 +1,5 @@
-vim.cmd("map <Leader>lF :lua vim.lsp.buf.format({ async = true })<CR>") -- Set highlight on search
+vim.cmd("map <Leader>lF :lua vim.lsp.buf.format({ async = true })<CR>")
+-- Set highlight on search
 -- keymap to use telescope fzf currently the live grep one is better as it searches througth multiple files and gives a better preview
 -- vim.keymap.set("n", "<leader>/", function()
 --   -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -47,6 +48,7 @@ vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buff
 vim.keymap.set("n", "<leader>c", "<CMD>bdelete<CR>")
 vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
 vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
+
 
 -- Lesser used LSP functionality
 -- vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, { desc = "n", '[G]oto [D]eclaration' })
