@@ -12,27 +12,26 @@ vim.cmd("map <Leader>lF :lua vim.lsp.buf.format({ async = true })<CR>")
 -- This file is automatically loaded by lazyvim.config.init
 --
 
-vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle)
-
+vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle)
 
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
-vim.keymap.set("n", '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame' })
-vim.keymap.set("n", '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
 
-vim.keymap.set("n", 'gd', vim.lsp.buf.definition, { desc = '[G]oto [D]efinition' })
-vim.keymap.set("n", 'gr', require('telescope.builtin').lsp_references, { desc = '[G]oto [R]eferences' })
-vim.keymap.set("n", 'gI', vim.lsp.buf.implementation, { desc = '[G]oto [I]mplementation' })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
+vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "[G]oto [R]eferences" })
+vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "[G]oto [I]mplementation" })
 -- vim.keymap.set('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 -- vim.keymap.set('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 -- vim.keymap.set('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
 -- See `:help K` for why this keymap
-vim.keymap.set("n", 'K', vim.lsp.buf.hover, { desc = 'Hover Documentation' })
-vim.keymap.set("n", '<C-k>', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+--vim.keymap.set("n", '<C-k>', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 -- Move Lines
 vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
 vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
@@ -49,7 +48,6 @@ vim.keymap.set("n", "<leader>c", "<CMD>bdelete<CR>")
 vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
 vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
 
-
 -- Lesser used LSP functionality
 -- vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, { desc = "n", '[G]oto [D]eclaration' })
 -- vim.keymap.set("n", '<leader>wa', vim.lsp.buf.add_workspace_folder, { desc = '[W]orkspace [A]dd Folder' })
@@ -62,7 +60,6 @@ vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap 
 -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
 -- vim.lsp.buf.format()
 -- end, { desc = 'Format current buffer with LSP' })
-
 
 --
 -- local Util = require("lazyvim.util")
