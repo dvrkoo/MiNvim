@@ -48,6 +48,12 @@ vim.keymap.set("n", "<leader>c", "<CMD>bdelete<CR>")
 vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
 vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
 
+--  better ctrl d ctrl u
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
+
+-- selecta all
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 -- Lesser used LSP functionality
 -- vim.keymap.set("n", 'gD', vim.lsp.buf.declaration, { desc = "n", '[G]oto [D]eclaration' })
 -- vim.keymap.set("n", '<leader>wa', vim.lsp.buf.add_workspace_folder, { desc = '[W]orkspace [A]dd Folder' })

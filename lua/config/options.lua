@@ -1,6 +1,6 @@
 vim.wo.relativenumber = true
 vim.wo.number = true
-vim.cmd([[colorscheme rose-pine]])
+vim.cmd([[colorscheme catppuccin]])
 
 -- this stuff is relevant for nvim--tree
 -- disable netrw at the very start of your init.lua
@@ -40,3 +40,14 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
 	desc = "Re-enable autoformat-on-save",
 })
+
+-- neovide stuff
+-- Helper function for transparency formatting
+local alpha = function()
+	return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+end
+-- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+vim.g.neovide_transparency = 0.7
+vim.g.transparency = 0.8
+vim.g.neovide_background_color = "#0f1117" .. alpha()
+vim.g.neovide_input_macos_alt_is_meta = false
