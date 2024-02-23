@@ -6,6 +6,7 @@ return {
 		priority = 1000,
 		opts = {},
 	},
+	{ "nyoom-engineering/oxocarbon.nvim" },
 	{
 		"rebelot/kanagawa.nvim",
 	},

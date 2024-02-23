@@ -1,7 +1,6 @@
 vim.wo.relativenumber = true
 vim.wo.number = true
-vim.cmd([[colorscheme catppuccin]])
-
+vim.cmd([[colorscheme oxocarbon]])
 -- this stuff is relevant for nvim--tree
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
