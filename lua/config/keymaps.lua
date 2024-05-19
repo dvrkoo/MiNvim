@@ -11,6 +11,11 @@ vim.cmd("map <Leader>lF :lua vim.lsp.buf.format({ async = true })<CR>")
 
 -- This file is automatically loaded by lazyvim.config.init
 --
+-- nvim-dap
+vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "break-points" })
+vim.keymap.set("n", "<leader>dpr", function()
+	require("dap-python").test_method()
+end, { desc = "Continue" })
 
 vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle)
 -- deprecated in favor of smart-splits for better tmux integration
